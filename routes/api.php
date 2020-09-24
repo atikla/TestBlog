@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\user\UserController;
 use App\Http\Controllers\API\user\auth\UserAuthController;
 
 /*
@@ -16,3 +17,8 @@ use App\Http\Controllers\API\user\auth\UserAuthController;
 */
 
 Route::post('user/login', [UserAuthController::class, 'login'])->name('user.login');
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth:api', 'as' => 'user.'], function () {
+    // get auth user
+    Route::get('/', [UserController::class, 'index'])->name('get');
+});
