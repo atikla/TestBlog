@@ -42,4 +42,12 @@ class Article extends Model
         'published_at' => 'datetime',
         'published' => 'boolean'
     ];
+
+    /**
+     * Get the user that owns the Article.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

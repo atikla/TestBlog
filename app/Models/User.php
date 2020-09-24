@@ -44,4 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean'
     ];
+
+    /**
+     * Get the user's articles
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
